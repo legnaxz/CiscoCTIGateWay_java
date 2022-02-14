@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- STS 컴파일용 log4j -->
+<Configuration name="NCTIGateway">
+  <Appenders>
+
+    <RollingRandomAccessFile name="NCTIGateway" fileName="logs/NCTIGateway.log" filePattern="logs/NCTIGateway-%d{yyyyMMdd}_%i.log" immediateFlush="false" append="false" ignoreExceptions="false">
+        <PatternLayout>
+            <Pattern>[%d][%t][%-5level][%c{1.}] %m%n</Pattern>
+        </PatternLayout>
+        <Policies>
+            <SizeBasedTriggeringPolicy size="500 MB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="3">
+                <Delete basePath="logs/">
+                        <IfFileName glob="*.log" />
+                        <IfLastModified age="7d"/>
+                </Delete>
+        </DefaultRolloverStrategy>
+    </RollingRandomAccessFile>
+
+    <RollingRandomAccessFile name="NexusCube" fileName="logs/NexusCube.log" filePattern="logs/NexusCube-%d{yyyyMMdd}_%i.log" immediateFlush="false" append="false" ignoreExceptions="false">
+        <PatternLayout>
+            <Pattern>[%d][%t][%-5level][%c{1.}] %m%n</Pattern>
+        </PatternLayout>
+        <Policies>
+            <SizeBasedTriggeringPolicy size="500 MB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="3">
+                <Delete basePath="logs/">
+                        <IfFileName glob="*.log" />
+                        <IfLastModified age="7d"/>
+                </Delete>
+        </DefaultRolloverStrategy>
+    </RollingRandomAccessFile>
+    
+    <Console name="STDOUT" target="SYSTEM_OUT">
+        <PatternLayout pattern="[%d][%t][%-5level][%c{1.}] %m%n"/>
+    </Console>
+
+    <Async name="ASYNC_NCTIGateway" includeLocation="true">
+        <AppenderRef ref="NCTIGateway" />
+    </Async>
+  
+    <Async name="ASYNC_NexusCube" includeLocation="true">
+        <AppenderRef ref="NexusCube" />
+    </Async>
+    
+  </Appenders>
+
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+
+    <Logger name="com.yespeech" level="debug" additivity="false">
+        <AppenderRef ref="ASYNC_NCTIGateway" level="debug"></AppenderRef>
+        <AppenderRef ref="STDOUT"/>
+    </Logger>
+    
+    <Logger name="com.cube.ctiserver" level="debug" additivity="false">
+        <AppenderRef ref="ASYNC_NexusCube" level="debug"></AppenderRef>
+        <AppenderRef ref="STDOUT"/>
+    </Logger>
+  </Loggers>
+
+</Configuration>
