@@ -94,9 +94,30 @@ public class TcpInterface implements Runnable {
     {   
 		if(running)
         {
-        	object_writer.writeObject(obj);
+        	writer.println(obj);
         }
     }
+	
+	public void sendMessage(byte [] msg) throws IOException
+    {   
+		if(running)
+        {
+			object_writer.write( msg );
+			object_writer.flush();
+
+        }
+    }
+	
+	
+	public void sendMessage( Integer i) throws IOException
+    {   
+		if(running)
+        {
+			object_writer.write( i );
+			object_writer.flush();
+        }
+    }
+	
 
     public void run()
     {
@@ -124,9 +145,9 @@ public class TcpInterface implements Runnable {
 //			out.print( msg );
 //			out.flush();
 //			
-//            str = in.readLine();                //Client·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ÀÐ¾î¿È
+//            str = in.readLine();                //Clientï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ð¾ï¿½ï¿½
 //
-//            System.out.println("Client·Î ºÎÅÍ ¿Â ¸Þ¼¼Áö : " + str);
+//            System.out.println("Clientï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ : " + str);
 //			
 //			out.close();
 //			in.close();
