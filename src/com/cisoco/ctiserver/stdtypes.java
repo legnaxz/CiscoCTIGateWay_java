@@ -313,44 +313,44 @@ public class stdtypes {
 	public static class FailureEvent {}
 	
 	public static class OpenReq implements Serializable {
-		public int	MessageLength;		// excludes this header size, 8 bytes
-		public int	MessageType;
-		public int InvokeID;
-		public int VersionNumber;
-		public int IdleTimeout;
-		public int PeripherealID;
-		public int ServiceRequested;
-		public int CallMsgMask;
-		public int	AgentStateMask;
-		public int	ConfigMsgMask;
-		public int	Reserved1;
-		public int	Reserved2;
-		public int	Reserved3;
+		public byte [] MessageLength;		// excludes this header size, 8 bytes
+		public byte [] MessageType;
+		public byte [] InvokeID;
+		public byte [] VersionNumber;
+		public byte [] IdleTimeout;
+		public byte [] PeripherealID;
+		public byte [] ServiceRequested;
+		public byte [] CallMsgMask;
+		public byte [] AgentStateMask;
+		public byte [] ConfigMsgMask;
+		public byte [] Reserved1;
+		public byte [] Reserved2;
+		public byte [] Reserved3;
 
 		// Floating
 		public byte [] pFloatingAddr = new byte[9];
-		
-		public String toString()
-	    {
-	       
-	        String str = new String(this.pFloatingAddr);
-	        String result = String.format( "%4s", this.MessageLength)
-	        		+ String.format( "%4s", this.MessageType)
-	        		+ String.format( "%4s", this.InvokeID)
-	        		+ String.format( "%4s", this.VersionNumber)
-	        		+ String.format( "%4s", this.IdleTimeout)
-	        		+ String.format( "%4s", this.PeripherealID)
-	        		+ String.format( "%4s", this.ServiceRequested)
-	        		+ String.format( "%4s", this.CallMsgMask)
-	        		+ String.format( "%4s", this.AgentStateMask)
-	        		+ String.format( "%4s", this.ConfigMsgMask)
-	        		+ String.format( "%4s", this.Reserved1)
-	        		+ String.format( "%4s", this.Reserved2)
-	        		+ String.format( "%4s", this.Reserved3)
-	        		+ String.format( "%9s", str);
-	        return result;
-	    }
-		
+//		
+//		public String toString()
+//	    {
+//	       
+//	        String str = new String(this.pFloatingAddr);
+//	        String result = String.format( "%4s", this.MessageLength)
+//	        		+ String.format( "%4s", this.MessageType)
+//	        		+ String.format( "%4s", this.InvokeID)
+//	        		+ String.format( "%4s", this.VersionNumber)
+//	        		+ String.format( "%4s", this.IdleTimeout)
+//	        		+ String.format( "%4s", this.PeripherealID)
+//	        		+ String.format( "%4s", this.ServiceRequested)
+//	        		+ String.format( "%4s", this.CallMsgMask)
+//	        		+ String.format( "%4s", this.AgentStateMask)
+//	        		+ String.format( "%4s", this.ConfigMsgMask)
+//	        		+ String.format( "%4s", this.Reserved1)
+//	        		+ String.format( "%4s", this.Reserved2)
+//	        		+ String.format( "%4s", this.Reserved3)
+//	        		+ String.format( "%9s", str);
+//	        return result;
+//	    }
+//		
 		public int getLength()
 		{
 			return 52 + 9;
