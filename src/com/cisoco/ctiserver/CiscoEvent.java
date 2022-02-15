@@ -41,6 +41,8 @@ public class CiscoEvent{
 		_port_backup = connectionInfo.getCTIBackupPort();
 		_DNs = connectionInfo.getDNs();
 		
+		
+		
 		logger.debug("DNs counts : [{}]", _DNs.length );
 		
 		
